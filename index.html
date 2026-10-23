@@ -1,632 +1,1152 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACKPINK Gallery</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arline Portfolio</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <style>
-        body {
-            background-color: #ffe6f0;
-            font-family: Arial, sans-serif;
-        }
+  <style>
+    :root {
+      --primary: #8FA58A;
+      --secondary: #DDE5D8;
+      --text: #222222;
+      --accent: #6B2D45;
+      --light: #f7f8f5;
+      --white: #ffffff;
+    }
 
-        .navbar {
-            background-color: #171017;
-            padding: 15px;
-        }
+    body {
+      background: var(--secondary);
+      margin: 0;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
 
-        .navbar-brand {
-            color: #ff69b4 !important;
-            font-weight: bold;
-            letter-spacing: 2px;
-            font-size: 24px;
-        }
+    .navbar {
+      padding: 12px 55px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
 
-        .page-title {
-            color: #d63384;
-            font-weight: bold;
-            text-align: center;
-            margin: 35px 0;
-        }
+    .logo {
+      width: 85px;
+    }
 
-        .card {
-            border: 3px solid #ff69b4;
-            border-radius: 18px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        }
+    .nav-link {
+      color: #000;
+      font-size: 13px;
+      margin: 0 10px;
+      font-weight: 600;
+    }
 
-        .card:hover {
-            transform: translateY(-7px);
-        }
+    .nav-link:hover {
+      color: var(--accent);
+    }
 
-        .card-img-top {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            object-position: center;
-        }
+    .btn-green {
+      background: var(--accent);
+      color: white;
+      border-radius: 25px;
+      padding: 9px 22px;
+      border: none;
+      transition: 0.3s;
+      font-weight: 600;
+    }
 
-        .card-body {
-            background-color: #fff0f6;
-            text-align: center;
-            padding: 20px;
-        }
+    .btn-green:hover {
+      background: #4d2032;
+      color: white;
+      transform: translateY(-3px);
+    }
 
-        .card-title {
-            color: #c21868;
-            font-weight: bold;
-            font-size: 24px;
-        }
+    .hero {
+      background: linear-gradient(135deg, #DDE5D8, #ffffff);
+      padding: 70px 70px 55px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .btn-pink {
-            display: inline-block;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 10px 22px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: var(--primary);
+      opacity: 0.25;
+      border-radius: 50%;
+      right: -130px;
+      top: -90px;
+    }
 
-        .btn-pink:hover {
-            background-color: #d63384;
-            color: white;
-        }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      background: var(--accent);
+      opacity: 0.12;
+      border-radius: 50%;
+      left: -70px;
+      bottom: -50px;
+    }
 
-        /* MEMBER POPUPS */
-        .modal-dialog {
-            max-width: 650px;
-        }
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: 90px;
+      color: #000;
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
 
-        .modal-content {
-            border: 3px solid #ff69b4;
-            border-radius: 20px;
-            overflow: hidden;
-            background-color: #fff0f6;
-        }
+    .hero-badge {
+      display: inline-block;
+      background: white;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--accent);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
 
-        .modal-header {
-            background-color: #171017;
-            color: #ff69b4;
-            padding: 18px;
-        }
+    .hero-img {
+      width: 285px;
+      height: 330px;
+      object-fit: cover;
+      border-radius: 55px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 18px 35px rgba(0,0,0,0.2);
+      border: 8px solid white;
+    }
 
-        .modal-title {
-            font-weight: bold;
-            font-size: 24px;
-        }
+    .hero-card {
+      background: white;
+      border-radius: 25px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      position: absolute;
+      right: 50px;
+      bottom: 30px;
+      z-index: 3;
+      width: 220px;
+      text-align: left;
+    }
 
-        .modal-body {
-            padding: 25px;
-        }
+    .social i {
+      font-size: 24px;
+      margin-right: 20px;
+      color: #222;
+      transition: 0.3s;
+      cursor: pointer;
+    }
 
-        .modal-member-img {
-            width: 100%;
-            max-width: 450px;
-            height: 400px;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 15px;
-            border: 4px solid #ffb6d5;
-            margin-bottom: 20px;
-        }
+    .social i:hover {
+      color: var(--accent);
+      transform: translateY(-4px);
+    }
 
-        .member-label {
-            color: #c21868;
-            font-weight: bold;
-        }
+    .section-card {
+      background: white;
+      border-radius: 35px;
+      padding: 38px;
+      margin: 30px 70px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
 
-        .member-info {
-            font-size: 17px;
-            margin-bottom: 12px;
-        }
+    .section-card:hover {
+      transform: translateY(-3px);
+    }
 
-        /* SOLO SONGS SECTION */
-        .solo-section {
-            margin-top: 70px;
-            margin-bottom: 55px;
-            padding: 35px 25px;
-            background: linear-gradient(135deg, #fff0f6, #ffd6e8);
-            border: 3px solid #ff69b4;
-            border-radius: 25px;
-            box-shadow: 0 8px 25px rgba(194, 24, 104, 0.15);
-        }
+    .section-title {
+      font-weight: 800;
+      margin-bottom: 25px;
+      position: relative;
+    }
 
-        .solo-heading {
-            text-align: center;
-            color: #c21868;
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
+    .section-title::after {
+      content: "";
+      width: 55px;
+      height: 4px;
+      background: var(--accent);
+      display: block;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
 
-        .solo-description {
-            text-align: center;
-            color: #75445b;
-            margin-bottom: 35px;
-        }
+    .section-label {
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
 
-        .solo-card {
-            height: 100%;
-            overflow: hidden;
-            background-color: #171017;
-            color: white;
-            border: 2px solid #ff69b4;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .about-photo-wrapper {
+      position: relative;
+      display: inline-block;
+    }
 
-        .solo-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(214, 51, 132, 0.3);
-        }
+    .about-blob {
+      position: absolute;
+      width: 240px;
+      height: 280px;
+      background: var(--secondary);
+      border-radius: 45% 55% 35% 65%;
+      top: -15px;
+      left: -15px;
+      z-index: 1;
+    }
 
-        .solo-cover {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            object-position: center;
-            background-color: #33202b;
-        }
+    .about-img {
+      width: 210px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 20px;
+      position: relative;
+      z-index: 2;
+    }
 
-        .solo-card-body {
-            padding: 24px 18px;
-            text-align: center;
-        }
+    .info-icon {
+      width: 55px;
+      height: 55px;
+      background: var(--secondary);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      color: var(--accent);
+    }
 
-        .solo-artist {
-            color: #ff9bc8;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    .mini-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+      background: #f7f8f5;
+      padding: 12px;
+      border-radius: 18px;
+    }
 
-        .solo-song-title {
-            color: #ffffff;
-            font-size: 27px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    .stat-box {
+      background: #f7f8f5;
+      padding: 20px;
+      border-radius: 22px;
+      transition: 0.3s;
+      height: 100%;
+    }
 
-        .solo-album {
-            color: #e6b7ce;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
+    .stat-box:hover {
+      background: var(--secondary);
+      transform: translateY(-5px);
+    }
 
-        .solo-tag {
-            display: inline-block;
-            color: #171017;
-            background-color: #ff9bc8;
-            border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+    .highlight-box {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 25px;
+      border-radius: 25px;
+      height: 100%;
+    }
 
-        .solo-button {
-            display: block;
-            width: 100%;
-            background-color: #ff69b4;
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+    .circle-skill {
+      width: 85px;
+      height: 85px;
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      background: #fff;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    }
 
-        .solo-button:hover {
-            background-color: #ffffff;
-            color: #c21868;
-        }
+    .project-card {
+      background: #f7f8f5;
+      border-radius: 25px;
+      padding: 20px;
+      height: 100%;
+      transition: 0.3s;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
 
-        .solo-footer-note {
-            text-align: center;
-            color: #75445b;
-            font-size: 13px;
-            margin-top: 25px;
-            margin-bottom: 0;
-        }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+      border-color: var(--accent);
+    }
 
-        footer {
-            background-color: #171017;
-            color: #ff69b4;
-            text-align: center;
-            padding: 20px;
-            margin-top: 45px;
-        }
+    .project-img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      background: white;
+      border-radius: 18px;
+      padding: 10px;
+    }
 
-        @media (max-width: 576px) {
-            .card-img-top {
-                height: 350px;
-            }
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      background: var(--secondary);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 3px;
+    }
 
-            .modal-member-img {
-                height: 300px;
-            }
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-top: 40px;
+      gap: 25px;
+    }
 
-            .navbar-brand {
-                font-size: 19px;
-            }
+    .timeline-item {
+      background: #f7f8f5;
+      padding: 25px;
+      border-radius: 25px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      transition: 0.3s;
+    }
 
-            .solo-section {
-                padding: 25px 15px;
-            }
+    .timeline-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+    }
 
-            .solo-heading {
-                font-size: 29px;
-            }
+    .timeline-dot {
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: block;
+      margin: auto;
+      margin-bottom: 15px;
+    }
 
-            .solo-cover {
-                height: 300px;
-            }
-        }
-    </style>
+    .modal-content {
+      border-radius: 30px;
+      border: none;
+      overflow: hidden;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      background: var(--secondary);
+      border-radius: 25px;
+      padding: 20px;
+    }
+
+    .modal-header {
+      background: var(--secondary);
+      border-bottom: none;
+    }
+
+    .contact-section {
+      background: var(--primary);
+      border-radius: 80px 80px 0 0;
+      padding: 70px;
+      margin-top: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box {
+      background: white;
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      background: var(--primary);
+    }
+
+
+    .soft-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(107,45,69,0.18), transparent);
+      margin: 26px 0;
+    }
+
+    .hero-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+      max-width: 520px;
+    }
+
+    .hero-mini {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(107,45,69,0.08);
+      border-radius: 18px;
+      padding: 13px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+    }
+
+    .hero-mini h6 {
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .accent-strip {
+      background: var(--accent);
+      color: white;
+      border-radius: 28px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .accent-strip::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      right: -45px;
+      top: -55px;
+    }
+
+    .service-card {
+      background: #f7f8f5;
+      border-radius: 24px;
+      padding: 24px;
+      height: 100%;
+      border: 1px solid rgba(107,45,69,0.08);
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: #ffffff;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+
+    .service-card i {
+      font-size: 30px;
+      color: var(--accent);
+    }
+
+    .skill-bar {
+      background: #f7f8f5;
+      border-radius: 18px;
+      padding: 18px;
+      height: 100%;
+    }
+
+    .bar-line {
+      height: 10px;
+      border-radius: 20px;
+      background: #e5e8e1;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 20px;
+    }
+
+    .process-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: #f7f8f5;
+      border-radius: 24px;
+      padding: 22px;
+      height: 100%;
+      border: 1px solid rgba(107,45,69,0.08);
+    }
+
+    .process-num {
+      min-width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .project-intro {
+      background: linear-gradient(135deg, var(--secondary), #ffffff);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(107,45,69,0.08);
+    }
+
+    .project-card::after {
+      content: "Click to view";
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .resource-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 22px;
+      height: 100%;
+      border-left: 5px solid var(--accent);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+    }
+
+    .contact-mini {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: #f7f8f5;
+      border-radius: 18px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .contact-mini i {
+      color: var(--accent);
+      font-size: 20px;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      z-index: 999;
+    }
+
+    .back-top:hover {
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 20px;
+      }
+
+      .hero {
+        padding: 40px 25px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .section-card {
+        margin: 25px 20px;
+        padding: 25px;
+      }
+
+      .hero-img {
+        margin-top: 30px;
+        width: 230px;
+        height: 270px;
+      }
+
+      .hero-card {
+        position: static;
+        margin: 20px auto 0;
+      }
+
+      .timeline {
+        flex-direction: column;
+      }
+
+      .contact-section {
+        padding: 40px 25px;
+        border-radius: 45px 45px 0 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar navbar-dark">
-        <div class="container justify-content-center">
-            <a class="navbar-brand" href="#">BLACKPINK GALLERY ♡</a>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <a class="navbar-brand" href="#">
+      <img src="assets/logo.png" class="logo" alt="Logo">
+    </a>
 
-    <div class="container-fluid px-4 px-lg-5">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- PAGE TITLE -->
-        <h1 class="page-title">BLACKPINK Members</h1>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#goals">Goals</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
+        <li class="nav-item"><a class="btn btn-green" href="#contact">Get in Touch</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <p class="text-center mb-5">
-            Discover your favorite BLACKPINK members! ♡
+  <section class="hero">
+    <div class="row align-items-center position-relative">
+      <div class="col-md-6">
+        <span class="hero-badge">BSIT Student Portfolio</span>
+        <p class="fs-5 mb-1">Hello, I'm</p>
+        <h1>ARLINE</h1>
+        <h5 class="fw-bold mb-4">IT STUDENT ΓÇó WEB DESIGNER ΓÇó DEVELOPER</h5>
+
+        <p class="mb-4">
+          I design and build simple, creative, and user-friendly web experiences.
+          My goal is to create websites that are clean, useful, and meaningful.
         </p>
 
-        <!-- MEMBER GALLERY -->
-        <div class="row g-4">
+        <a href="#projects" class="btn btn-green mb-4">View Work</a>
 
-            <!-- JISOO -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100">
-                    <img src="assets/jisoo0.jpg"
-                         class="card-img-top"
-                         alt="Jisoo">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Jisoo</h5>
-                        <p>Kim Jisoo </p>
-
-                        <button class="btn btn-pink"
-                                data-bs-toggle="modal"
-                                data-bs-target="#jisooModal">
-                            View Information
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- JENNIE -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100">
-                    <img src="assets/jennie3.jpg"
-                         class="card-img-top"
-                         alt="Jennie">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Jennie</h5>
-                        <p>Kim Jennie </p>
-
-                        <button class="btn btn-pink"
-                                data-bs-toggle="modal"
-                                data-bs-target="#jennieModal">
-                            View Information
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ROSÉ -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100">
-                    <img src="assets/rose.jpg"
-                         class="card-img-top"
-                         alt="Rosé">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Rosé</h5>
-                        <p>Park Chaeyoung ♡</p>
-
-                        <button class="btn btn-pink"
-                                data-bs-toggle="modal"
-                                data-bs-target="#roseModal">
-                            View Information
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LISA -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100">
-                    <img src="assets/lisa.png"
-                         class="card-img-top"
-                         alt="Lisa">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Lisa</h5>
-                        <p>Lalisa Manobal </p>
-
-                        <button class="btn btn-pink"
-                                data-bs-toggle="modal"
-                                data-bs-target="#lisaModal">
-                            View Information
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+        <div class="hero-mini-grid">
+          <div class="hero-mini">
+            <h6>Student</h6>
+            <p class="small mb-0">BSIT Journey</p>
+          </div>
+          <div class="hero-mini">
+            <h6>Design</h6>
+            <p class="small mb-0">UI/UX Focus</p>
+          </div>
+          <div class="hero-mini">
+            <h6>Code</h6>
+            <p class="small mb-0">Web Projects</p>
+          </div>
         </div>
 
-        <!-- JISOO POPUP -->
-        <div class="modal fade" id="jisooModal" tabindex="-1"
-             aria-labelledby="jisooModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+        <div class="social">
+          <i class="bi bi-facebook"></i>
+          <i class="bi bi-github"></i>
+          <i class="bi bi-instagram"></i>
+          <i class="bi bi-twitter-x"></i>
+        </div>
+      </div>
 
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="jisooModalLabel">Jisoo ♡</h5>
-                        <button type="button" class="btn-close btn-close-white"
-                                data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+      <div class="col-md-6 text-center position-relative">
+        <img src="assets/ARLINE.jpg" class="hero-img" alt="Profile">
 
-                    <div class="modal-body text-center">
-                        <img src="assets/jisoo.jpg"
-                             alt="Jisoo"
-                             class="modal-member-img">
+   
+    </div>
+  </section>
 
-                        <h4>Kim Jisoo</h4>
-                        <p class="member-info"><span class="member-label">Birthday:</span> January 3, 1995</p>
-                        <p class="member-info"><span class="member-label">Nationality:</span> South Korean</p>
-                        <p class="member-info"><span class="member-label">Group:</span> BLACKPINK</p>
-                        <p class="member-info"><span class="member-label">Role:</span> Vocalist</p>
-                        <p class="member-info"><span class="member-label">Fun Fact:</span> Jisoo is also an actress.</p>
-                    </div>
+  <section class="section-card" id="about">
+    <p class="section-label">Γ£ª ABOUT ME</p>
+    <h5 class="section-title">Who I Am</h5>
 
-                </div>
-            </div>
+    <div class="row align-items-center g-4">
+      <div class="col-md-4">
+        <p>
+          I am an Information Technology student at the Polytechnic University of the Philippines with a passion for creating visually appealing and functional digital experiences.
+        </p>
+
+        <p>
+          I enjoy designing layouts, building web pages, and learning how systems work from front-end to back-end.
+        </p>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <div class="about-photo-wrapper">
+          <img src="assets/ARLINE.jpg" class="about-img" alt="About Image">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mini-info">
+          <div class="info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+          <p class="mb-0">Polytechnic University of the Philippines</p>
         </div>
 
-        <!-- JENNIE POPUP -->
-        <div class="modal fade" id="jennieModal" tabindex="-1"
-             aria-labelledby="jennieModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="jennieModalLabel">Jennie ♡</h5>
-                        <button type="button" class="btn-close btn-close-white"
-                                data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body text-center">
-                        <img src="assets/jennie.jpg"
-                             alt="Jennie"
-                             class="modal-member-img">
-
-                        <h4>Kim Jennie</h4>
-                        <p class="member-info"><span class="member-label">Birthday:</span> January 16, 1996</p>
-                        <p class="member-info"><span class="member-label">Nationality:</span> South Korean</p>
-                        <p class="member-info"><span class="member-label">Group:</span> BLACKPINK</p>
-                        <p class="member-info"><span class="member-label">Role:</span> Rapper and Vocalist</p>
-                        <p class="member-info"><span class="member-label">Fun Fact:</span> Jennie is also a solo artist.</p>
-                    </div>
-
-                </div>
-            </div>
+        <div class="mini-info">
+          <div class="info-icon"><i class="bi bi-mortarboard-fill"></i></div>
+          <p class="mb-0">Bachelor of Science in Information Technology</p>
         </div>
 
-        <!-- ROSÉ POPUP -->
-        <div class="modal fade" id="roseModal" tabindex="-1"
-             aria-labelledby="roseModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="roseModalLabel">Rosé ♡</h5>
-                        <button type="button" class="btn-close btn-close-white"
-                                data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body text-center">
-                        <img src="assets/rosee.jpg"
-                             alt="Rosé"
-                             class="modal-member-img">
-
-                        <h4>Roseanne Park</h4>
-                        <p class="member-info"><span class="member-label">Birthday:</span> February 11, 1997</p>
-                        <p class="member-info"><span class="member-label">Nationality:</span> Korean-New Zealander</p>
-                        <p class="member-info"><span class="member-label">Group:</span> BLACKPINK</p>
-                        <p class="member-info"><span class="member-label">Role:</span> Vocalist</p>
-                        <p class="member-info"><span class="member-label">Fun Fact:</span> Rosé plays guitar and piano.</p>
-                    </div>
-
-                </div>
-            </div>
+        <div class="mini-info">
+          <div class="info-icon"><i class="bi bi-stars"></i></div>
+          <p class="mb-0">Web Design, UI/UX, and Development</p>
         </div>
-
-        <!-- LISA POPUP -->
-        <div class="modal fade" id="lisaModal" tabindex="-1"
-             aria-labelledby="lisaModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="lisaModalLabel">Lisa ♡</h5>
-                        <button type="button" class="btn-close btn-close-white"
-                                data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body text-center">
-                        <img src="assets/lisaa.jpg"
-                             alt="Lisa"
-                             class="modal-member-img">
-
-                        <h4>Lalisa Manobal</h4>
-                        <p class="member-info"><span class="member-label">Birthday:</span> March 27, 1997</p>
-                        <p class="member-info"><span class="member-label">Nationality:</span> Thai</p>
-                        <p class="member-info"><span class="member-label">Group:</span> BLACKPINK</p>
-                        <p class="member-info"><span class="member-label">Role:</span> Rapper and Dancer</p>
-                        <p class="member-info"><span class="member-label">Fun Fact:</span> Lisa is known for her dancing skills.</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- ================================= -->
-        <!-- BLACKPINK SOLO SONGS SECTION -->
-        <!-- ================================= -->
-
-        <section class="solo-section" id="solo-songs">
-
-            <h2 class="solo-heading">BLACKPINK Solo Era ♡</h2>
-
-            <p class="solo-description">
-                Four queens. Four solo hits. One iconic group. 
-                <br>
-                Discover the individual music styles of each BLACKPINK member!
-            </p>
-
-            <div class="row g-4">
-
-                <!-- JISOO: FLOWER -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="solo-card">
-                        <img
-                            src="https://placehold.co/600x600/42152e/ffb6d5?text=JISOO%0AFLOWER"
-                            alt="Jisoo FLOWER cover placeholder"
-                            class="solo-cover">
-
-                        <div class="solo-card-body">
-                            <p class="solo-artist">JISOO</p>
-                            <h3 class="solo-song-title">FLOWER</h3>
-                            <p class="solo-album">Single album: ME · 2023</p>
-                            <span class="solo-tag">DREAMY POP</span>
-
-                            <a
-                                href="https://www.youtube.com/results?search_query=JISOO+FLOWER+Official+Music+Video"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="solo-button">
-                                ▶ Listen Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JENNIE: LIKE JENNIE -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="solo-card">
-                        <img
-                            src="https://placehold.co/600x600/281b33/ffb6d5?text=JENNIE%0Alike+JENNIE"
-                            alt="Jennie like JENNIE cover placeholder"
-                            class="solo-cover">
-
-                        <div class="solo-card-body">
-                            <p class="solo-artist">JENNIE</p>
-                            <h3 class="solo-song-title">like JENNIE</h3>
-                            <p class="solo-album">Album: Ruby · 2025</p>
-                            <span class="solo-tag">BOLD & CONFIDENT</span>
-
-                            <a
-                                href="https://www.youtube.com/watch?v=aS7al94FVbk"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="solo-button">
-                                ▶ Listen Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ROSÉ: TOXIC TILL THE END -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="solo-card">
-                        <img
-                            src="https://placehold.co/600x600/45252b/ffd9e8?text=ROSE%0Atoxic+till+the+end"
-                            alt="Rosé toxic till the end cover placeholder"
-                            class="solo-cover">
-
-                        <div class="solo-card-body">
-                            <p class="solo-artist">ROSÉ</p>
-                            <h3 class="solo-song-title">toxic till the end</h3>
-                            <p class="solo-album">Album: rosie · 2024</p>
-                            <span class="solo-tag">EMOTIONAL POP</span>
-
-                            <a
-                                href="https://www.youtube.com/watch?v=eA0lHNZ1KCA"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="solo-button">
-                                ▶ Listen Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LISA: MONEY -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="solo-card">
-                        <img
-                            src="https://placehold.co/600x600/302019/ffd9a8?text=LISA%0AMONEY"
-                            alt="Lisa MONEY cover placeholder"
-                            class="solo-cover">
-
-                        <div class="solo-card-body">
-                            <p class="solo-artist">LISA</p>
-                            <h3 class="solo-song-title">MONEY</h3>
-                            <p class="solo-album">Single album: LALISA · 2021</p>
-                            <span class="solo-tag">HIP-HOP</span>
-
-                            <a
-                                href="https://lalisa.lnk.to/MONEY"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="solo-button">
-                                ▶ Listen Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <p class="solo-footer-note">
-                ♡ Click "Listen Now" to explore each member's solo song.
-            </p>
-
-        </section>
-
+      </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p class="mb-0">Made with ♡ for BLACKPINK fans</p>
-    </footer>
+    <div class="row mt-4 text-center g-3">
+      <div class="col-md-4">
+        <div class="stat-box">
+          <h3 class="fw-bold text-success">15+</h3>
+          <p class="mb-0">Projects</p>
+        </div>
+      </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <div class="col-md-4">
+        <div class="stat-box">
+          <h3 class="fw-bold text-success">3+</h3>
+          <p class="mb-0">Years Learning</p>
+        </div>
+      </div>
 
+      <div class="col-md-4">
+        <div class="stat-box">
+          <h3 class="fw-bold text-success">10+</h3>
+          <p class="mb-0">Design Concepts</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section-card">
+    <p class="section-label">Γ£ª WHAT I DO</p>
+    <h5 class="section-title">Creative Focus</h5>
+
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="highlight-box">
+          <h5><i class="bi bi-window-sidebar"></i></h5>
+          <h6 class="fw-bold">Web Layouts</h6>
+          <p class="small mb-0">Clean and responsive website designs using HTML, CSS, and Bootstrap.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="highlight-box">
+          <h5><i class="bi bi-phone"></i></h5>
+          <h6 class="fw-bold">UI Design</h6>
+          <p class="small mb-0">Simple and user-friendly interfaces for websites and mobile apps.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="highlight-box">
+          <h5><i class="bi bi-database"></i></h5>
+          <h6 class="fw-bold">PHP & MySQL</h6>
+          <p class="small mb-0">Basic dynamic systems such as login, register, and database records.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="highlight-box">
+          <h5><i class="bi bi-palette"></i></h5>
+          <h6 class="fw-bold">Branding</h6>
+          <p class="small mb-0">Creative logo concepts, color palettes, and visual identity designs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <p class="section-label">Γ£ª DESIGN STRENGTHS</p>
+    <h5 class="section-title">How I Build My Projects</h5>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="service-card">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <h6 class="fw-bold mt-3">Organized Sections</h6>
+          <p class="small mb-0">I arrange content clearly so visitors can understand the page quickly.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="service-card">
+          <i class="bi bi-magic"></i>
+          <h6 class="fw-bold mt-3">Clean Visual Style</h6>
+          <p class="small mb-0">I use simple colors, spacing, and cards to keep the design neat.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="service-card">
+          <i class="bi bi-device-hdd"></i>
+          <h6 class="fw-bold mt-3">Functional Systems</h6>
+          <p class="small mb-0">I practice forms, login pages, database connection, and dynamic features.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card" id="skills">
+    <p class="section-label">Γ£ª MY SKILLS</p>
+    <h5 class="section-title">Tools & Skills I Work With</h5>
+
+    <div class="row text-center g-4 mt-3">
+      <div class="col-6 col-md-2">
+        <div class="circle-skill">85%</div>
+        <p class="small fw-bold mt-2">Figma</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="circle-skill">70%</div>
+        <p class="small fw-bold mt-2">HTML</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="circle-skill">70%</div>
+        <p class="small fw-bold mt-2">CSS</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="circle-skill">40%</div>
+        <p class="small fw-bold mt-2">Bootstrap</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="circle-skill">50%</div>
+        <p class="small fw-bold mt-2">JavaScript</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="circle-skill">55%</div>
+        <p class="small fw-bold mt-2">PHP</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card" id="projects">
+    <p class="section-label">Γ£ª FEATURED PROJECTS</p>
+    <h5 class="section-title">Selected Work</h5>
+
+    <div class="project-intro">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h6 class="fw-bold mb-1">Click each project card to view full details.</h6>
+          <p class="small mb-0">Each popup includes the project image, description, tools used, purpose, and tags.</p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+          <span class="tag">Interactive</span>
+          <span class="tag">Modal View</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center g-4">
+
+      <div class="col-md-4">
+        <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal1">
+          <img src="assets/project1.png" class="project-img" alt="Serenity Logo">
+          <h6 class="fw-bold">Serenity Logo</h6>
+          <p class="small">A creative branding design project.</p>
+          <span class="tag">Logo</span>
+          <span class="tag">Branding</span>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal2">
+          <img src="assets/project2.png" class="project-img" alt="Mobile UI Design">
+          <h6 class="fw-bold">Mobile UI Design</h6>
+          <p class="small">A social media style mobile interface.</p>
+          <span class="tag">Figma</span>
+          <span class="tag">UI/UX</span>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal3">
+          <img src="assets/project3.png" class="project-img" alt="Food Website">
+          <h6 class="fw-bold">Food Website</h6>
+          <p class="small">A warm and clean website layout.</p>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-card">
+    <p class="section-label">Γ£ª MY PROCESS</p>
+    <h5 class="section-title">Simple Workflow</h5>
+
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="process-card">
+          <div class="process-num">1</div>
+          <div>
+            <h6 class="fw-bold">Plan</h6>
+            <p class="small mb-0">Identify the purpose, users, and needed sections.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="process-card">
+          <div class="process-num">2</div>
+          <div>
+            <h6 class="fw-bold">Design</h6>
+            <p class="small mb-0">Create layout, color palette, and visual direction.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="process-card">
+          <div class="process-num">3</div>
+          <div>
+            <h6 class="fw-bold">Code</h6>
+            <p class="small mb-0">Build the page using HTML, CSS, Bootstrap, and PHP.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="process-card">
+          <div class="process-num">4</div>
+          <div>
+            <h6 class="fw-bold">Improve</h6>
+            <p class="small mb-0">Fix spacing, responsiveness, and user experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card" id="experience">
+    <p class="section-label">Γ£ª EXPERIENCE</p>
+    <h5 class="section-title">My Journey So Far</h5>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <h6 class="fw-bold">UI Designer</h6>
+        <p class="small mb-0">Figma, wireframes, mockups, and simple prototypes.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <h6 class="fw-bold">Frontend Developer</h6>
+        <p class="small mb-0">HTML, CSS, Bootstrap, and responsive layouts.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <h6 class="fw-bold">Backend Learner</h6>
+        <p class="small mb-0">PHP, MySQL, login systems, and form handling.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card" id="goals">
+    <p class="section-label">Γ£ª FUTURE GOALS</p>
+    <h5 class="section-title">What I Want To Improve</h5>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="stat-box">
+          <h5><i class="bi bi-code-slash"></i></h5>
+          <h6 class="fw-bold">Full-Stack Development</h6>
+          <p class="small mb-0">Improve my skills in PHP, MySQL, JavaScript, and complete web systems.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="stat-box">
+          <h5><i class="bi bi-brush"></i></h5>
+          <h6 class="fw-bold">Better UI/UX Design</h6>
+          <p class="small mb-0">Create cleaner, more modern, and more user-friendly interfaces.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="stat-box">
+          <h5><i class="bi bi-briefcase"></i></h5>
+          <h6 class="fw-bold">Build Real Projects</h6>
+          <p class="small mb-0">Develop more useful school and community-based systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <p class="section-label">Γ£ª LET'S CONNECT</p>
+        <h3 class="fw-bold">Let's create something amazing</h3>
+        <p>
+          Feel free to contact me for projects, collaborations, or creative ideas.
+        </p>
+        <a href="#" class="btn btn-green">Say Hello</a>
+      </div>
+
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="contact-box">
+          <div class="contact-mini">
+            <i class="bi bi-envelope-fill"></i>
+            <span>arline@example.com</span>
+          </div>
+
+          <div class="contact-mini">
+            <i class="bi bi-phone-fill"></i>
+            <span>09XX XXX XXXX</span>
+          </div>
+
+          <div class="contact-mini">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>Philippines</span>
+          </div>
+
+          <div class="social mt-3">
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-github"></i>
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-linkedin"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    ┬⌐ 2026 Arline Portfolio. All rights reserved.
+  </footer>
+
+  <div class="modal fade" id="projectModal1" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Serenity Logo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <img src="assets/project1.png" class="modal-img" alt="Serenity Logo">
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="fw-bold">Project Information</h5>
+              <p>
+                Serenity Logo is a branding design project focused on creating a calm,
+                clean, and memorable visual identity. The design uses simple shapes,
+                soft balance, and a modern style.
+              </p>
+
+              <p><strong>Type:</strong> Logo Design</p>
+              <p><strong>Tools Used:</strong> Figma / Canva</p>
+              <p><strong>Purpose:</strong> Branding and visual identity</p>
+
+              <span class="tag">Logo</span>
+              <span class="tag">Brand Identity</span>
+              <span class="tag">Creative Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectModal2" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Mobile UI Design</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <img src="assets/project2.png" class="modal-img" alt="Mobile UI Design">
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="fw-bold">Project Information</h5>
+              <p>
+                This mobile UI design is a social media inspired interface.
+                It focuses on clean spacing, readable content, and a simple user flow.
+              </p>
+
+              <p><strong>Type:</strong> Mobile App Interface</p>
+              <p><strong>Tools Used:</strong> Figma</p>
+              <p><strong>Purpose:</strong> UI/UX practice and mobile layout design</p>
+
+              <span class="tag">Mobile UI</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Prototype</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectModal3" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Food Website</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <img src="assets/project3.png" class="modal-img" alt="Food Website">
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="fw-bold">Project Information</h5>
+              <p>
+                Food Website is a clean and warm website layout designed for food-related
+                products or restaurants. It uses simple sections, attractive visuals,
+                and easy navigation.
+              </p>
+
+              <p><strong>Type:</strong> Website Layout</p>
+              <p><strong>Tools Used:</strong> HTML, CSS, Bootstrap</p>
+              <p><strong>Purpose:</strong> Front-end layout practice</p>
+
+              <span class="tag">Website</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="back-top"><i class="bi bi-arrow-up"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
